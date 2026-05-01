@@ -9,38 +9,150 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as CustomsRouteImport } from './routes/customs'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CustomsIndexRouteImport } from './routes/customs.index'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as CustomsVerifyRouteImport } from './routes/customs.verify'
+import { Route as AdminUsersRouteImport } from './routes/admin.users'
+import { Route as AdminAnalyticsRouteImport } from './routes/admin.analytics'
+import { Route as AdminAddItemRouteImport } from './routes/admin.add-item'
 
+const CustomsRoute = CustomsRouteImport.update({
+  id: '/customs',
+  path: '/customs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CustomsIndexRoute = CustomsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => CustomsRoute,
+} as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const CustomsVerifyRoute = CustomsVerifyRouteImport.update({
+  id: '/verify',
+  path: '/verify',
+  getParentRoute: () => CustomsRoute,
+} as any)
+const AdminUsersRoute = AdminUsersRouteImport.update({
+  id: '/users',
+  path: '/users',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminAnalyticsRoute = AdminAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminAddItemRoute = AdminAddItemRouteImport.update({
+  id: '/add-item',
+  path: '/add-item',
+  getParentRoute: () => AdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/customs': typeof CustomsRouteWithChildren
+  '/admin/add-item': typeof AdminAddItemRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/users': typeof AdminUsersRoute
+  '/customs/verify': typeof CustomsVerifyRoute
+  '/admin/': typeof AdminIndexRoute
+  '/customs/': typeof CustomsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin/add-item': typeof AdminAddItemRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/users': typeof AdminUsersRoute
+  '/customs/verify': typeof CustomsVerifyRoute
+  '/admin': typeof AdminIndexRoute
+  '/customs': typeof CustomsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/customs': typeof CustomsRouteWithChildren
+  '/admin/add-item': typeof AdminAddItemRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/users': typeof AdminUsersRoute
+  '/customs/verify': typeof CustomsVerifyRoute
+  '/admin/': typeof AdminIndexRoute
+  '/customs/': typeof CustomsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/customs'
+    | '/admin/add-item'
+    | '/admin/analytics'
+    | '/admin/users'
+    | '/customs/verify'
+    | '/admin/'
+    | '/customs/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/admin/add-item'
+    | '/admin/analytics'
+    | '/admin/users'
+    | '/customs/verify'
+    | '/admin'
+    | '/customs'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/customs'
+    | '/admin/add-item'
+    | '/admin/analytics'
+    | '/admin/users'
+    | '/customs/verify'
+    | '/admin/'
+    | '/customs/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRouteWithChildren
+  CustomsRoute: typeof CustomsRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/customs': {
+      id: '/customs'
+      path: '/customs'
+      fullPath: '/customs'
+      preLoaderRoute: typeof CustomsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +160,84 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/customs/': {
+      id: '/customs/'
+      path: '/'
+      fullPath: '/customs/'
+      preLoaderRoute: typeof CustomsIndexRouteImport
+      parentRoute: typeof CustomsRoute
+    }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/customs/verify': {
+      id: '/customs/verify'
+      path: '/verify'
+      fullPath: '/customs/verify'
+      preLoaderRoute: typeof CustomsVerifyRouteImport
+      parentRoute: typeof CustomsRoute
+    }
+    '/admin/users': {
+      id: '/admin/users'
+      path: '/users'
+      fullPath: '/admin/users'
+      preLoaderRoute: typeof AdminUsersRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/analytics': {
+      id: '/admin/analytics'
+      path: '/analytics'
+      fullPath: '/admin/analytics'
+      preLoaderRoute: typeof AdminAnalyticsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/add-item': {
+      id: '/admin/add-item'
+      path: '/add-item'
+      fullPath: '/admin/add-item'
+      preLoaderRoute: typeof AdminAddItemRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
 
+interface AdminRouteChildren {
+  AdminAddItemRoute: typeof AdminAddItemRoute
+  AdminAnalyticsRoute: typeof AdminAnalyticsRoute
+  AdminUsersRoute: typeof AdminUsersRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminAddItemRoute: AdminAddItemRoute,
+  AdminAnalyticsRoute: AdminAnalyticsRoute,
+  AdminUsersRoute: AdminUsersRoute,
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
+interface CustomsRouteChildren {
+  CustomsVerifyRoute: typeof CustomsVerifyRoute
+  CustomsIndexRoute: typeof CustomsIndexRoute
+}
+
+const CustomsRouteChildren: CustomsRouteChildren = {
+  CustomsVerifyRoute: CustomsVerifyRoute,
+  CustomsIndexRoute: CustomsIndexRoute,
+}
+
+const CustomsRouteWithChildren =
+  CustomsRoute._addFileChildren(CustomsRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRouteWithChildren,
+  CustomsRoute: CustomsRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
