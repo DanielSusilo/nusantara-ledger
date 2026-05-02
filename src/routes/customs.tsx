@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { DashboardShell } from "@/components/DashboardShell";
-import { Home, ShieldCheck } from "lucide-react";
+import { ShieldCheck, FileCheck2 } from "lucide-react";
 
 export const Route = createFileRoute("/customs")({
   component: CustomsLayout,
@@ -9,11 +9,11 @@ export const Route = createFileRoute("/customs")({
 function CustomsLayout() {
   return (
     <DashboardShell
-      title="Customs / Stakeholder"
+      title="Bea Cukai"
       allowedRoles={["customs", "supplier"]}
       navItems={[
-        { to: "/customs", label: "Home", icon: <Home className="size-4" /> },
-        { to: "/customs/verify", label: "Verify Goods", icon: <ShieldCheck className="size-4" /> },
+        { to: "/customs/verify", label: "Pending Verifications", icon: <ShieldCheck className="size-4" /> },
+        { to: "/customs/cleared", label: "Cleared Goods", icon: <FileCheck2 className="size-4" /> },
       ]}
     />
   );
