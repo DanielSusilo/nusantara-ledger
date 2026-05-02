@@ -29,8 +29,8 @@ import { useNavigate } from "@tanstack/react-router";
 
 const ROLE_ROUTES: Record<Role, string> = {
   admin: "/admin",
-  supplier: "/customs",
-  customs: "/customs",
+  supplier: "/customs/verify",
+  customs: "/customs/verify",
 };
 
 export function ConnectWalletButton() {
@@ -107,8 +107,7 @@ export function ConnectWalletButton() {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="admin">Admin · Logistics Operator</SelectItem>
-                  <SelectItem value="supplier">Supplier / Stakeholder</SelectItem>
-                  <SelectItem value="customs">Customs Officer (Bea Cukai)</SelectItem>
+                  <SelectItem value="customs">Bea Cukai (Customs Officer)</SelectItem>
                 </SelectContent>
               </Select>
             </div>

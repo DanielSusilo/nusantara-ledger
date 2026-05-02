@@ -12,15 +12,11 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as CustomsRouteImport } from './routes/customs'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as CustomsIndexRouteImport } from './routes/customs.index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as CustomsVerifyRouteImport } from './routes/customs.verify'
 import { Route as CustomsClearedRouteImport } from './routes/customs.cleared'
-import { Route as AdminUsersRouteImport } from './routes/admin.users'
 import { Route as AdminShipmentsRouteImport } from './routes/admin.shipments'
 import { Route as AdminFleetRouteImport } from './routes/admin.fleet'
-import { Route as AdminAnalyticsRouteImport } from './routes/admin.analytics'
-import { Route as AdminAddItemRouteImport } from './routes/admin.add-item'
 
 const CustomsRoute = CustomsRouteImport.update({
   id: '/customs',
@@ -37,11 +33,6 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CustomsIndexRoute = CustomsIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => CustomsRoute,
-} as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -57,11 +48,6 @@ const CustomsClearedRoute = CustomsClearedRouteImport.update({
   path: '/cleared',
   getParentRoute: () => CustomsRoute,
 } as any)
-const AdminUsersRoute = AdminUsersRouteImport.update({
-  id: '/users',
-  path: '/users',
-  getParentRoute: () => AdminRoute,
-} as any)
 const AdminShipmentsRoute = AdminShipmentsRouteImport.update({
   id: '/shipments',
   path: '/shipments',
@@ -72,57 +58,36 @@ const AdminFleetRoute = AdminFleetRouteImport.update({
   path: '/fleet',
   getParentRoute: () => AdminRoute,
 } as any)
-const AdminAnalyticsRoute = AdminAnalyticsRouteImport.update({
-  id: '/analytics',
-  path: '/analytics',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AdminAddItemRoute = AdminAddItemRouteImport.update({
-  id: '/add-item',
-  path: '/add-item',
-  getParentRoute: () => AdminRoute,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
   '/customs': typeof CustomsRouteWithChildren
-  '/admin/add-item': typeof AdminAddItemRoute
-  '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/fleet': typeof AdminFleetRoute
   '/admin/shipments': typeof AdminShipmentsRoute
-  '/admin/users': typeof AdminUsersRoute
   '/customs/cleared': typeof CustomsClearedRoute
   '/customs/verify': typeof CustomsVerifyRoute
   '/admin/': typeof AdminIndexRoute
-  '/customs/': typeof CustomsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/admin/add-item': typeof AdminAddItemRoute
-  '/admin/analytics': typeof AdminAnalyticsRoute
+  '/customs': typeof CustomsRouteWithChildren
   '/admin/fleet': typeof AdminFleetRoute
   '/admin/shipments': typeof AdminShipmentsRoute
-  '/admin/users': typeof AdminUsersRoute
   '/customs/cleared': typeof CustomsClearedRoute
   '/customs/verify': typeof CustomsVerifyRoute
   '/admin': typeof AdminIndexRoute
-  '/customs': typeof CustomsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
   '/customs': typeof CustomsRouteWithChildren
-  '/admin/add-item': typeof AdminAddItemRoute
-  '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/fleet': typeof AdminFleetRoute
   '/admin/shipments': typeof AdminShipmentsRoute
-  '/admin/users': typeof AdminUsersRoute
   '/customs/cleared': typeof CustomsClearedRoute
   '/customs/verify': typeof CustomsVerifyRoute
   '/admin/': typeof AdminIndexRoute
-  '/customs/': typeof CustomsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -130,41 +95,30 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/customs'
-    | '/admin/add-item'
-    | '/admin/analytics'
     | '/admin/fleet'
     | '/admin/shipments'
-    | '/admin/users'
     | '/customs/cleared'
     | '/customs/verify'
     | '/admin/'
-    | '/customs/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/admin/add-item'
-    | '/admin/analytics'
+    | '/customs'
     | '/admin/fleet'
     | '/admin/shipments'
-    | '/admin/users'
     | '/customs/cleared'
     | '/customs/verify'
     | '/admin'
-    | '/customs'
   id:
     | '__root__'
     | '/'
     | '/admin'
     | '/customs'
-    | '/admin/add-item'
-    | '/admin/analytics'
     | '/admin/fleet'
     | '/admin/shipments'
-    | '/admin/users'
     | '/customs/cleared'
     | '/customs/verify'
     | '/admin/'
-    | '/customs/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -196,13 +150,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/customs/': {
-      id: '/customs/'
-      path: '/'
-      fullPath: '/customs/'
-      preLoaderRoute: typeof CustomsIndexRouteImport
-      parentRoute: typeof CustomsRoute
-    }
     '/admin/': {
       id: '/admin/'
       path: '/'
@@ -224,13 +171,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CustomsClearedRouteImport
       parentRoute: typeof CustomsRoute
     }
-    '/admin/users': {
-      id: '/admin/users'
-      path: '/users'
-      fullPath: '/admin/users'
-      preLoaderRoute: typeof AdminUsersRouteImport
-      parentRoute: typeof AdminRoute
-    }
     '/admin/shipments': {
       id: '/admin/shipments'
       path: '/shipments'
@@ -245,38 +185,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminFleetRouteImport
       parentRoute: typeof AdminRoute
     }
-    '/admin/analytics': {
-      id: '/admin/analytics'
-      path: '/analytics'
-      fullPath: '/admin/analytics'
-      preLoaderRoute: typeof AdminAnalyticsRouteImport
-      parentRoute: typeof AdminRoute
-    }
-    '/admin/add-item': {
-      id: '/admin/add-item'
-      path: '/add-item'
-      fullPath: '/admin/add-item'
-      preLoaderRoute: typeof AdminAddItemRouteImport
-      parentRoute: typeof AdminRoute
-    }
   }
 }
 
 interface AdminRouteChildren {
-  AdminAddItemRoute: typeof AdminAddItemRoute
-  AdminAnalyticsRoute: typeof AdminAnalyticsRoute
   AdminFleetRoute: typeof AdminFleetRoute
   AdminShipmentsRoute: typeof AdminShipmentsRoute
-  AdminUsersRoute: typeof AdminUsersRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
-  AdminAddItemRoute: AdminAddItemRoute,
-  AdminAnalyticsRoute: AdminAnalyticsRoute,
   AdminFleetRoute: AdminFleetRoute,
   AdminShipmentsRoute: AdminShipmentsRoute,
-  AdminUsersRoute: AdminUsersRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
 
@@ -285,13 +205,11 @@ const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 interface CustomsRouteChildren {
   CustomsClearedRoute: typeof CustomsClearedRoute
   CustomsVerifyRoute: typeof CustomsVerifyRoute
-  CustomsIndexRoute: typeof CustomsIndexRoute
 }
 
 const CustomsRouteChildren: CustomsRouteChildren = {
   CustomsClearedRoute: CustomsClearedRoute,
   CustomsVerifyRoute: CustomsVerifyRoute,
-  CustomsIndexRoute: CustomsIndexRoute,
 }
 
 const CustomsRouteWithChildren =

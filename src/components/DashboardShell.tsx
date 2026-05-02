@@ -2,7 +2,7 @@ import { Link, Outlet, useRouter, useRouterState } from "@tanstack/react-router"
 import { useEffect, type ReactNode } from "react";
 import { useWallet, shortKey, type Role } from "@/lib/wallet";
 import { Button } from "@/components/ui/button";
-import { Boxes, LogOut } from "lucide-react";
+import { Truck, LogOut } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface NavItem {
@@ -35,10 +35,10 @@ export function DashboardShell({ title, navItems, allowedRoles }: DashboardShell
       <aside className="hidden md:flex w-64 flex-col bg-sidebar text-sidebar-foreground">
         <div className="flex items-center gap-2 px-6 h-16 border-b border-sidebar-border">
           <div className="size-9 rounded-lg bg-success/20 flex items-center justify-center">
-            <Boxes className="size-5 text-sidebar-primary" />
+            <Truck className="size-5 text-sidebar-primary" />
           </div>
           <div className="leading-tight">
-            <div className="font-display font-semibold">LogiChain</div>
+            <div className="font-display font-semibold">Dan.s Logistic</div>
             <div className="text-[10px] uppercase tracking-widest text-sidebar-foreground/60">{title}</div>
           </div>
         </div>
@@ -84,7 +84,7 @@ export function DashboardShell({ title, navItems, allowedRoles }: DashboardShell
 
       <main className="flex-1 min-w-0">
         <div className="md:hidden flex items-center justify-between p-4 bg-sidebar text-sidebar-foreground">
-          <div className="font-display font-semibold">LogiChain · {title}</div>
+          <div className="font-display font-semibold">Dan.s Logistic · {title}</div>
           <Button size="sm" variant="ghost" onClick={() => { disconnect(); router.navigate({ to: "/" }); }}>
             <LogOut className="size-4" />
           </Button>
