@@ -1,7 +1,7 @@
 import { Truck, MapPin, Navigation } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-interface Truck {
+interface FleetTruck {
   id: string;
   plate: string;
   lat: number;
@@ -12,7 +12,7 @@ interface Truck {
 }
 
 interface MockMapProps {
-  trucks: Truck[];
+  trucks: FleetTruck[];
   height?: string;
   highlightId?: string;
 }
