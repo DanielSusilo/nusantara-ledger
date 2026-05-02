@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as CustomsRouteImport } from './routes/customs'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CustomsIndexRouteImport } from './routes/customs.index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as CustomsVerifyRouteImport } from './routes/customs.verify'
 import { Route as CustomsClearedRouteImport } from './routes/customs.cleared'
@@ -32,6 +33,11 @@ const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const CustomsIndexRoute = CustomsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => CustomsRoute,
 } as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/',
@@ -68,15 +74,16 @@ export interface FileRoutesByFullPath {
   '/customs/cleared': typeof CustomsClearedRoute
   '/customs/verify': typeof CustomsVerifyRoute
   '/admin/': typeof AdminIndexRoute
+  '/customs/': typeof CustomsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/customs': typeof CustomsRouteWithChildren
   '/admin/fleet': typeof AdminFleetRoute
   '/admin/shipments': typeof AdminShipmentsRoute
   '/customs/cleared': typeof CustomsClearedRoute
   '/customs/verify': typeof CustomsVerifyRoute
   '/admin': typeof AdminIndexRoute
+  '/customs': typeof CustomsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -88,6 +95,7 @@ export interface FileRoutesById {
   '/customs/cleared': typeof CustomsClearedRoute
   '/customs/verify': typeof CustomsVerifyRoute
   '/admin/': typeof AdminIndexRoute
+  '/customs/': typeof CustomsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -100,15 +108,16 @@ export interface FileRouteTypes {
     | '/customs/cleared'
     | '/customs/verify'
     | '/admin/'
+    | '/customs/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/customs'
     | '/admin/fleet'
     | '/admin/shipments'
     | '/customs/cleared'
     | '/customs/verify'
     | '/admin'
+    | '/customs'
   id:
     | '__root__'
     | '/'
@@ -119,6 +128,7 @@ export interface FileRouteTypes {
     | '/customs/cleared'
     | '/customs/verify'
     | '/admin/'
+    | '/customs/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -149,6 +159,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/customs/': {
+      id: '/customs/'
+      path: '/'
+      fullPath: '/customs/'
+      preLoaderRoute: typeof CustomsIndexRouteImport
+      parentRoute: typeof CustomsRoute
     }
     '/admin/': {
       id: '/admin/'
@@ -205,11 +222,13 @@ const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 interface CustomsRouteChildren {
   CustomsClearedRoute: typeof CustomsClearedRoute
   CustomsVerifyRoute: typeof CustomsVerifyRoute
+  CustomsIndexRoute: typeof CustomsIndexRoute
 }
 
 const CustomsRouteChildren: CustomsRouteChildren = {
   CustomsClearedRoute: CustomsClearedRoute,
   CustomsVerifyRoute: CustomsVerifyRoute,
+  CustomsIndexRoute: CustomsIndexRoute,
 }
 
 const CustomsRouteWithChildren =
