@@ -15,7 +15,10 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as CustomsIndexRouteImport } from './routes/customs.index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as CustomsVerifyRouteImport } from './routes/customs.verify'
+import { Route as CustomsClearedRouteImport } from './routes/customs.cleared'
 import { Route as AdminUsersRouteImport } from './routes/admin.users'
+import { Route as AdminShipmentsRouteImport } from './routes/admin.shipments'
+import { Route as AdminFleetRouteImport } from './routes/admin.fleet'
 import { Route as AdminAnalyticsRouteImport } from './routes/admin.analytics'
 import { Route as AdminAddItemRouteImport } from './routes/admin.add-item'
 
@@ -49,9 +52,24 @@ const CustomsVerifyRoute = CustomsVerifyRouteImport.update({
   path: '/verify',
   getParentRoute: () => CustomsRoute,
 } as any)
+const CustomsClearedRoute = CustomsClearedRouteImport.update({
+  id: '/cleared',
+  path: '/cleared',
+  getParentRoute: () => CustomsRoute,
+} as any)
 const AdminUsersRoute = AdminUsersRouteImport.update({
   id: '/users',
   path: '/users',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminShipmentsRoute = AdminShipmentsRouteImport.update({
+  id: '/shipments',
+  path: '/shipments',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminFleetRoute = AdminFleetRouteImport.update({
+  id: '/fleet',
+  path: '/fleet',
   getParentRoute: () => AdminRoute,
 } as any)
 const AdminAnalyticsRoute = AdminAnalyticsRouteImport.update({
@@ -71,7 +89,10 @@ export interface FileRoutesByFullPath {
   '/customs': typeof CustomsRouteWithChildren
   '/admin/add-item': typeof AdminAddItemRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/fleet': typeof AdminFleetRoute
+  '/admin/shipments': typeof AdminShipmentsRoute
   '/admin/users': typeof AdminUsersRoute
+  '/customs/cleared': typeof CustomsClearedRoute
   '/customs/verify': typeof CustomsVerifyRoute
   '/admin/': typeof AdminIndexRoute
   '/customs/': typeof CustomsIndexRoute
@@ -80,7 +101,10 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin/add-item': typeof AdminAddItemRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/fleet': typeof AdminFleetRoute
+  '/admin/shipments': typeof AdminShipmentsRoute
   '/admin/users': typeof AdminUsersRoute
+  '/customs/cleared': typeof CustomsClearedRoute
   '/customs/verify': typeof CustomsVerifyRoute
   '/admin': typeof AdminIndexRoute
   '/customs': typeof CustomsIndexRoute
@@ -92,7 +116,10 @@ export interface FileRoutesById {
   '/customs': typeof CustomsRouteWithChildren
   '/admin/add-item': typeof AdminAddItemRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/fleet': typeof AdminFleetRoute
+  '/admin/shipments': typeof AdminShipmentsRoute
   '/admin/users': typeof AdminUsersRoute
+  '/customs/cleared': typeof CustomsClearedRoute
   '/customs/verify': typeof CustomsVerifyRoute
   '/admin/': typeof AdminIndexRoute
   '/customs/': typeof CustomsIndexRoute
@@ -105,7 +132,10 @@ export interface FileRouteTypes {
     | '/customs'
     | '/admin/add-item'
     | '/admin/analytics'
+    | '/admin/fleet'
+    | '/admin/shipments'
     | '/admin/users'
+    | '/customs/cleared'
     | '/customs/verify'
     | '/admin/'
     | '/customs/'
@@ -114,7 +144,10 @@ export interface FileRouteTypes {
     | '/'
     | '/admin/add-item'
     | '/admin/analytics'
+    | '/admin/fleet'
+    | '/admin/shipments'
     | '/admin/users'
+    | '/customs/cleared'
     | '/customs/verify'
     | '/admin'
     | '/customs'
@@ -125,7 +158,10 @@ export interface FileRouteTypes {
     | '/customs'
     | '/admin/add-item'
     | '/admin/analytics'
+    | '/admin/fleet'
+    | '/admin/shipments'
     | '/admin/users'
+    | '/customs/cleared'
     | '/customs/verify'
     | '/admin/'
     | '/customs/'
@@ -181,11 +217,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CustomsVerifyRouteImport
       parentRoute: typeof CustomsRoute
     }
+    '/customs/cleared': {
+      id: '/customs/cleared'
+      path: '/cleared'
+      fullPath: '/customs/cleared'
+      preLoaderRoute: typeof CustomsClearedRouteImport
+      parentRoute: typeof CustomsRoute
+    }
     '/admin/users': {
       id: '/admin/users'
       path: '/users'
       fullPath: '/admin/users'
       preLoaderRoute: typeof AdminUsersRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/shipments': {
+      id: '/admin/shipments'
+      path: '/shipments'
+      fullPath: '/admin/shipments'
+      preLoaderRoute: typeof AdminShipmentsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/fleet': {
+      id: '/admin/fleet'
+      path: '/fleet'
+      fullPath: '/admin/fleet'
+      preLoaderRoute: typeof AdminFleetRouteImport
       parentRoute: typeof AdminRoute
     }
     '/admin/analytics': {
@@ -208,6 +265,8 @@ declare module '@tanstack/react-router' {
 interface AdminRouteChildren {
   AdminAddItemRoute: typeof AdminAddItemRoute
   AdminAnalyticsRoute: typeof AdminAnalyticsRoute
+  AdminFleetRoute: typeof AdminFleetRoute
+  AdminShipmentsRoute: typeof AdminShipmentsRoute
   AdminUsersRoute: typeof AdminUsersRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
@@ -215,6 +274,8 @@ interface AdminRouteChildren {
 const AdminRouteChildren: AdminRouteChildren = {
   AdminAddItemRoute: AdminAddItemRoute,
   AdminAnalyticsRoute: AdminAnalyticsRoute,
+  AdminFleetRoute: AdminFleetRoute,
+  AdminShipmentsRoute: AdminShipmentsRoute,
   AdminUsersRoute: AdminUsersRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
@@ -222,11 +283,13 @@ const AdminRouteChildren: AdminRouteChildren = {
 const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
 interface CustomsRouteChildren {
+  CustomsClearedRoute: typeof CustomsClearedRoute
   CustomsVerifyRoute: typeof CustomsVerifyRoute
   CustomsIndexRoute: typeof CustomsIndexRoute
 }
 
 const CustomsRouteChildren: CustomsRouteChildren = {
+  CustomsClearedRoute: CustomsClearedRoute,
   CustomsVerifyRoute: CustomsVerifyRoute,
   CustomsIndexRoute: CustomsIndexRoute,
 }
