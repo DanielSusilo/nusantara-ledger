@@ -33,10 +33,14 @@ export const Route = createRootRoute({
       { name: "description", content: "Hybrid Web3 logistics: kirim barang, bayar QRIS, dan lacak pengiriman dengan verifikasi Bea Cukai on-chain." },
       { name: "author", content: "Dan.s Logistic" },
       { property: "og:title", content: "Dan.s Logistic — Pengiriman Barang On-chain Indonesia" },
-      { property: "og:description", content: "Kirim, bayar QRIS, lacak. Diverifikasi Bea Cukai on-chain." },
+      { property: "og:description", content: "Hybrid Web3 logistics: kirim barang, bayar QRIS, dan lacak pengiriman dengan verifikasi Bea Cukai on-chain." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Dan.s Logistic — Pengiriman Barang On-chain Indonesia" },
+      { name: "twitter:description", content: "Hybrid Web3 logistics: kirim barang, bayar QRIS, dan lacak pengiriman dengan verifikasi Bea Cukai on-chain." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/8acd25ce-6ab3-4f67-8a1a-43a997eb6251/id-preview-344f22af--7dee1820-d4df-4414-b810-174f6a0b2111.lovable.app-1777736013256.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/8acd25ce-6ab3-4f67-8a1a-43a997eb6251/id-preview-344f22af--7dee1820-d4df-4414-b810-174f6a0b2111.lovable.app-1777736013256.png" },
     ],
     links: [
       {
