@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { DashboardShell } from "@/components/DashboardShell";
-import { Home, PackagePlus, Users, BarChart3 } from "lucide-react";
+import { Home, Package, Map } from "lucide-react";
 
 export const Route = createFileRoute("/admin")({
   component: AdminLayout,
@@ -12,10 +12,9 @@ function AdminLayout() {
       title="Admin Console"
       allowedRoles={["admin"]}
       navItems={[
-        { to: "/admin", label: "Home", icon: <Home className="size-4" /> },
-        { to: "/admin/add-item", label: "Add Item", icon: <PackagePlus className="size-4" /> },
-        { to: "/admin/users", label: "User Management", icon: <Users className="size-4" /> },
-        { to: "/admin/analytics", label: "Analytics", icon: <BarChart3 className="size-4" /> },
+        { to: "/admin", label: "Dashboard", icon: <Home className="size-4" /> },
+        { to: "/admin/shipments", label: "Manage Shipments", icon: <Package className="size-4" /> },
+        { to: "/admin/fleet", label: "Fleet Map Tracking", icon: <Map className="size-4" /> },
       ]}
     />
   );

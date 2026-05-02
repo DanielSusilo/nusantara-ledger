@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Package, Truck, CheckCircle2, TrendingUp } from "lucide-react";
-import { SHIPMENTS, ANALYTICS_BY_MONTH } from "@/lib/mock-data";
+import { Package, Truck, CheckCircle2, Coins } from "lucide-react";
+import { SHIPMENTS, ANALYTICS_BY_MONTH, formatIDR } from "@/lib/mock-data";
 import {
   ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip, CartesianGrid,
 } from "recharts";
@@ -12,21 +12,22 @@ export const Route = createFileRoute("/admin/")({
 });
 
 function AdminHome() {
-  const inTransit = SHIPMENTS.filter((s) => s.currentStage > 0 && s.currentStage < 5).length;
-  const completed = SHIPMENTS.filter((s) => s.currentStage >= 5).length;
+  const totalRevenue = SHIPMENTS.reduce((s, x) => s + x.fee, 0) * 312;
+  const pendingClearance = SHIPMENTS.filter((s) => s.currentStage === 2).length;
+  const inTransit = SHIPMENTS.filter((s) => s.currentStage === 3).length;
 
   const metrics = [
     { label: "Total Shipments", value: 2418, delta: "+12.4%", icon: Package, color: "text-primary" },
-    { label: "In Transit", value: inTransit * 312, delta: "+5.1%", icon: Truck, color: "text-warning" },
-    { label: "Completed Deliveries", value: completed * 481, delta: "+18.2%", icon: CheckCircle2, color: "text-success" },
-    { label: "On-chain Verifications", value: 14620, delta: "+22.8%", icon: TrendingUp, color: "text-success" },
+    { label: "QRIS Revenue", value: formatIDR(totalRevenue), delta: "+18.7%", icon: Coins, color: "text-success", isText: true },
+    { label: "Pending Clearance", value: pendingClearance * 47, delta: "−5.2%", icon: Truck, color: "text-warning" },
+    { label: "Delivered (mtd)", value: 1842, delta: "+9.1%", icon: CheckCircle2, color: "text-success" },
   ];
 
   return (
     <div className="p-6 sm:p-8 space-y-6 max-w-7xl">
       <div>
         <h1 className="text-2xl font-bold">Welcome back, Operator</h1>
-        <p className="text-muted-foreground text-sm">Real-time supply chain overview across Indonesian ports.</p>
+        <p className="text-muted-foreground text-sm">Real-time supply chain overview · Dan.s Logistic Indonesia.</p>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -37,7 +38,9 @@ function AdminHome() {
                 <div className="text-xs uppercase tracking-wider text-muted-foreground">{m.label}</div>
                 <m.icon className={`size-4 ${m.color}`} />
               </div>
-              <div className="mt-3 text-3xl font-bold">{m.value.toLocaleString()}</div>
+              <div className="mt-3 text-2xl font-bold">
+                {m.isText ? m.value : (m.value as number).toLocaleString()}
+              </div>
               <div className="mt-1 text-xs text-success">{m.delta} vs last month</div>
             </CardContent>
           </Card>
@@ -80,15 +83,15 @@ function AdminHome() {
             <CardTitle className="text-base">Active Shipments</CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
-            {SHIPMENTS.slice(0, 4).map((s) => (
+            {SHIPMENTS.slice(0, 5).map((s) => (
               <div key={s.id} className="flex items-center justify-between rounded-lg border p-3">
-                <div>
+                <div className="min-w-0">
                   <div className="font-mono text-xs text-muted-foreground">{s.id}</div>
                   <div className="text-sm font-medium truncate max-w-[160px]">{s.itemName}</div>
                 </div>
-                <Badge variant={s.currentStage >= 5 ? "default" : "outline"}
-                  className={s.currentStage >= 5 ? "bg-success text-success-foreground hover:bg-success" : "border-warning/50 text-warning"}>
-                  Stage {s.currentStage}/5
+                <Badge variant="outline"
+                  className={s.currentStage >= 4 ? "border-success/50 text-success" : "border-warning/50 text-warning"}>
+                  {s.stages[s.currentStage]?.name ?? "Done"}
                 </Badge>
               </div>
             ))}

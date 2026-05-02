@@ -15,9 +15,9 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as CustomsIndexRouteImport } from './routes/customs.index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as CustomsVerifyRouteImport } from './routes/customs.verify'
-import { Route as AdminUsersRouteImport } from './routes/admin.users'
-import { Route as AdminAnalyticsRouteImport } from './routes/admin.analytics'
-import { Route as AdminAddItemRouteImport } from './routes/admin.add-item'
+import { Route as CustomsClearedRouteImport } from './routes/customs.cleared'
+import { Route as AdminShipmentsRouteImport } from './routes/admin.shipments'
+import { Route as AdminFleetRouteImport } from './routes/admin.fleet'
 
 const CustomsRoute = CustomsRouteImport.update({
   id: '/customs',
@@ -49,19 +49,19 @@ const CustomsVerifyRoute = CustomsVerifyRouteImport.update({
   path: '/verify',
   getParentRoute: () => CustomsRoute,
 } as any)
-const AdminUsersRoute = AdminUsersRouteImport.update({
-  id: '/users',
-  path: '/users',
+const CustomsClearedRoute = CustomsClearedRouteImport.update({
+  id: '/cleared',
+  path: '/cleared',
+  getParentRoute: () => CustomsRoute,
+} as any)
+const AdminShipmentsRoute = AdminShipmentsRouteImport.update({
+  id: '/shipments',
+  path: '/shipments',
   getParentRoute: () => AdminRoute,
 } as any)
-const AdminAnalyticsRoute = AdminAnalyticsRouteImport.update({
-  id: '/analytics',
-  path: '/analytics',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AdminAddItemRoute = AdminAddItemRouteImport.update({
-  id: '/add-item',
-  path: '/add-item',
+const AdminFleetRoute = AdminFleetRouteImport.update({
+  id: '/fleet',
+  path: '/fleet',
   getParentRoute: () => AdminRoute,
 } as any)
 
@@ -69,18 +69,18 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
   '/customs': typeof CustomsRouteWithChildren
-  '/admin/add-item': typeof AdminAddItemRoute
-  '/admin/analytics': typeof AdminAnalyticsRoute
-  '/admin/users': typeof AdminUsersRoute
+  '/admin/fleet': typeof AdminFleetRoute
+  '/admin/shipments': typeof AdminShipmentsRoute
+  '/customs/cleared': typeof CustomsClearedRoute
   '/customs/verify': typeof CustomsVerifyRoute
   '/admin/': typeof AdminIndexRoute
   '/customs/': typeof CustomsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/admin/add-item': typeof AdminAddItemRoute
-  '/admin/analytics': typeof AdminAnalyticsRoute
-  '/admin/users': typeof AdminUsersRoute
+  '/admin/fleet': typeof AdminFleetRoute
+  '/admin/shipments': typeof AdminShipmentsRoute
+  '/customs/cleared': typeof CustomsClearedRoute
   '/customs/verify': typeof CustomsVerifyRoute
   '/admin': typeof AdminIndexRoute
   '/customs': typeof CustomsIndexRoute
@@ -90,9 +90,9 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
   '/customs': typeof CustomsRouteWithChildren
-  '/admin/add-item': typeof AdminAddItemRoute
-  '/admin/analytics': typeof AdminAnalyticsRoute
-  '/admin/users': typeof AdminUsersRoute
+  '/admin/fleet': typeof AdminFleetRoute
+  '/admin/shipments': typeof AdminShipmentsRoute
+  '/customs/cleared': typeof CustomsClearedRoute
   '/customs/verify': typeof CustomsVerifyRoute
   '/admin/': typeof AdminIndexRoute
   '/customs/': typeof CustomsIndexRoute
@@ -103,18 +103,18 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/customs'
-    | '/admin/add-item'
-    | '/admin/analytics'
-    | '/admin/users'
+    | '/admin/fleet'
+    | '/admin/shipments'
+    | '/customs/cleared'
     | '/customs/verify'
     | '/admin/'
     | '/customs/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/admin/add-item'
-    | '/admin/analytics'
-    | '/admin/users'
+    | '/admin/fleet'
+    | '/admin/shipments'
+    | '/customs/cleared'
     | '/customs/verify'
     | '/admin'
     | '/customs'
@@ -123,9 +123,9 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/customs'
-    | '/admin/add-item'
-    | '/admin/analytics'
-    | '/admin/users'
+    | '/admin/fleet'
+    | '/admin/shipments'
+    | '/customs/cleared'
     | '/customs/verify'
     | '/admin/'
     | '/customs/'
@@ -181,52 +181,52 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CustomsVerifyRouteImport
       parentRoute: typeof CustomsRoute
     }
-    '/admin/users': {
-      id: '/admin/users'
-      path: '/users'
-      fullPath: '/admin/users'
-      preLoaderRoute: typeof AdminUsersRouteImport
+    '/customs/cleared': {
+      id: '/customs/cleared'
+      path: '/cleared'
+      fullPath: '/customs/cleared'
+      preLoaderRoute: typeof CustomsClearedRouteImport
+      parentRoute: typeof CustomsRoute
+    }
+    '/admin/shipments': {
+      id: '/admin/shipments'
+      path: '/shipments'
+      fullPath: '/admin/shipments'
+      preLoaderRoute: typeof AdminShipmentsRouteImport
       parentRoute: typeof AdminRoute
     }
-    '/admin/analytics': {
-      id: '/admin/analytics'
-      path: '/analytics'
-      fullPath: '/admin/analytics'
-      preLoaderRoute: typeof AdminAnalyticsRouteImport
-      parentRoute: typeof AdminRoute
-    }
-    '/admin/add-item': {
-      id: '/admin/add-item'
-      path: '/add-item'
-      fullPath: '/admin/add-item'
-      preLoaderRoute: typeof AdminAddItemRouteImport
+    '/admin/fleet': {
+      id: '/admin/fleet'
+      path: '/fleet'
+      fullPath: '/admin/fleet'
+      preLoaderRoute: typeof AdminFleetRouteImport
       parentRoute: typeof AdminRoute
     }
   }
 }
 
 interface AdminRouteChildren {
-  AdminAddItemRoute: typeof AdminAddItemRoute
-  AdminAnalyticsRoute: typeof AdminAnalyticsRoute
-  AdminUsersRoute: typeof AdminUsersRoute
+  AdminFleetRoute: typeof AdminFleetRoute
+  AdminShipmentsRoute: typeof AdminShipmentsRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
-  AdminAddItemRoute: AdminAddItemRoute,
-  AdminAnalyticsRoute: AdminAnalyticsRoute,
-  AdminUsersRoute: AdminUsersRoute,
+  AdminFleetRoute: AdminFleetRoute,
+  AdminShipmentsRoute: AdminShipmentsRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
 
 const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
 interface CustomsRouteChildren {
+  CustomsClearedRoute: typeof CustomsClearedRoute
   CustomsVerifyRoute: typeof CustomsVerifyRoute
   CustomsIndexRoute: typeof CustomsIndexRoute
 }
 
 const CustomsRouteChildren: CustomsRouteChildren = {
+  CustomsClearedRoute: CustomsClearedRoute,
   CustomsVerifyRoute: CustomsVerifyRoute,
   CustomsIndexRoute: CustomsIndexRoute,
 }
@@ -242,3 +242,12 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { createStart } from '@tanstack/react-start'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+  }
+}
