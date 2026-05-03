@@ -15,9 +15,9 @@ import { SHIPMENTS, formatIDR, type Shipment } from "@/lib/mock-data";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Dan.s Logistic — Pengiriman Barang On-chain Indonesia" },
+      { title: "Nusantara Logistic — Pengiriman Barang On-chain Indonesia" },
       { name: "description", content: "Kirim, bayar via QRIS, dan lacak pengiriman di seluruh Indonesia. Diverifikasi langsung oleh Bea Cukai dengan tanda tangan blockchain." },
-      { property: "og:title", content: "Dan.s Logistic — Pengiriman Barang On-chain Indonesia" },
+      { property: "og:title", content: "Nusantara Logistic — Pengiriman Barang On-chain Indonesia" },
       { property: "og:description", content: "Kirim, bayar via QRIS, dan lacak pengiriman dengan transparansi blockchain." },
     ],
   }),
@@ -100,7 +100,7 @@ function LandingPage() {
       createdAt: new Date().toISOString().slice(0, 10),
       truck: { lat: -7.0, lng: 110.42, label: "B XXXX DNS" },
       stages: [
-        { name: "Ordered", actor: "Dan.s Logistic", location: form.origin, status: "current", timestamp: new Date().toLocaleString("id-ID") },
+        { name: "Ordered", actor: "Nusantara Logistic", location: form.origin, status: "current", timestamp: new Date().toLocaleString("id-ID") },
         { name: "Paid (QRIS)", actor: "QRIS · BI-FAST", location: "Online Payment", status: "pending" },
         { name: "Bea Cukai Clearance", actor: "Bea Cukai", location: "Port Customs", status: "pending" },
         { name: "In Transit", actor: "Fleet Driver", location: "On Route", status: "pending" },
@@ -157,7 +157,7 @@ function LandingPage() {
               <span className="text-gradient-emerald">Bayar QRIS. Lacak on-chain.</span>
             </h1>
             <p className="mt-6 text-lg text-muted-foreground max-w-2xl">
-              Dan.s Logistic menggabungkan kemudahan pembayaran QRIS dengan transparansi blockchain. Bea Cukai menandatangani kliring secara digital — semua tercatat.
+              Nusantara Logistic menggabungkan kemudahan pembayaran QRIS dengan transparansi blockchain. Bea Cukai menandatangani kliring secara digital — semua tercatat.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild size="lg" className="bg-success hover:bg-success/90 text-success-foreground">
@@ -399,7 +399,7 @@ function LandingPage() {
             <div className="text-xs uppercase tracking-widest text-success font-medium">Jaringan Pelabuhan</div>
             <h2 className="mt-2 text-3xl sm:text-4xl font-bold">Hadir di pelabuhan utama Jawa.</h2>
             <p className="mt-4 text-muted-foreground">
-              Dari Tanjung Priok hingga Tanjung Emas, Dan.s Logistic bermitra dengan otoritas pelabuhan dan kantor Bea Cukai.
+              Dari Tanjung Priok hingga Tanjung Emas, Nusantara Logistic bermitra dengan otoritas pelabuhan dan kantor Bea Cukai.
             </p>
             <div className="mt-8 grid grid-cols-2 gap-3">
               {[
@@ -438,7 +438,7 @@ function LandingPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 py-8 flex flex-wrap items-center justify-between gap-3 text-sm text-muted-foreground">
           <div className="flex items-center gap-2">
             <Truck className="size-4 text-success" />
-            <span>Dan.s Logistic · Indonesia · Built on Solana</span>
+            <span>Nusantara Logistic · Indonesia · Built on Solana</span>
           </div>
           <div className="font-mono text-xs">Smart Contract: DnsLg1...8FvP</div>
         </div>

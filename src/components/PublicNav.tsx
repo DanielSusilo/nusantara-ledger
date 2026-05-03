@@ -11,7 +11,7 @@ export function PublicNav() {
             <Truck className="size-5 text-success" />
           </div>
           <div className="leading-tight">
-            <div className="font-display text-base font-semibold">Dan.s Logistic</div>
+            <div className="font-display text-base font-semibold">Nusantara Logistic</div>
             <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Indonesia · On-chain</div>
           </div>
         </Link>
