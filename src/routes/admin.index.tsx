@@ -27,7 +27,7 @@ function AdminHome() {
     <div className="p-6 sm:p-8 space-y-6 max-w-7xl">
       <div>
         <h1 className="text-2xl font-bold">Welcome back, Operator</h1>
-        <p className="text-muted-foreground text-sm">Real-time supply chain overview · Dan.s Logistic Indonesia.</p>
+        <p className="text-muted-foreground text-sm">Real-time supply chain overview · Nusantara Logistic Indonesia.</p>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

@@ -35,7 +35,7 @@ export interface Shipment {
 }
 
 const ACTORS = [
-  { actor: "Dan.s Logistic", location: "Origin Hub" },
+  { actor: "Nusantara Logistic", location: "Origin Hub" },
   { actor: "QRIS Gateway", location: "BI-FAST" },
   { actor: "Bea Cukai", location: "Port Customs" },
   { actor: "Fleet Driver", location: "On Route" },
@@ -44,7 +44,7 @@ const ACTORS = [
 
 function makeStages(currentIdx: number, originCity: string, customsPort: string, destCity: string): Stage[] {
   const overrides = [
-    { actor: "Dan.s Logistic", location: originCity },
+    { actor: "Nusantara Logistic", location: originCity },
     { actor: "QRIS · BI-FAST", location: "Online Payment" },
     { actor: "Bea Cukai", location: customsPort },
     { actor: "Fleet Driver", location: "Trans-Java Route" },

@@ -18,7 +18,7 @@ function FleetMap() {
     <div className="p-6 sm:p-8 space-y-6 max-w-7xl">
       <div>
         <h1 className="text-2xl font-bold">Fleet Map Tracking</h1>
-        <p className="text-muted-foreground text-sm">Live position of all Dan.s Logistic trucks across Java.</p>
+        <p className="text-muted-foreground text-sm">Live position of all Nusantara Logistic trucks across Java.</p>
       </div>
 
       <div className="grid gap-3 sm:grid-cols-4">

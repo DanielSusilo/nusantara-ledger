@@ -110,7 +110,7 @@ export function QrisModal({ open, onOpenChange, fee, shipmentId, onPaid }: QrisM
 
           {!paid && (
             <div className="flex items-center justify-between text-xs text-muted-foreground border-t pt-3">
-              <span>Merchant: Dan.s Logistic</span>
+              <span>Merchant: Nusantara Logistic</span>
               <span className="font-mono">NMID: ID12453667</span>
             </div>
           )}
