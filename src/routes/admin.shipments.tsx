@@ -8,6 +8,14 @@ import { SHIPMENTS, formatIDR } from "@/lib/mock-data";
 import { Search } from "lucide-react";
 
 export const Route = createFileRoute("/admin/shipments")({
+  head: () => ({
+    meta: [
+      { title: "Manage Shipments — Nusantara Logistic" },
+      { name: "description", content: "Kelola semua pengiriman customer di platform Nusantara Logistic." },
+      { property: "og:title", content: "Manage Shipments — Nusantara Logistic" },
+      { property: "og:description", content: "Kelola semua pengiriman customer di platform Nusantara Logistic." },
+    ],
+  }),
   component: ManageShipments,
 });
 

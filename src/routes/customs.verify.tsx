@@ -11,6 +11,14 @@ import { SHIPMENTS, type Shipment } from "@/lib/mock-data";
 import { Loader2, ShieldCheck, CheckCircle2, FileSignature } from "lucide-react";
 
 export const Route = createFileRoute("/customs/verify")({
+  head: () => ({
+    meta: [
+      { title: "Pending Verifications — Nusantara Logistic" },
+      { name: "description", content: "Daftar pengiriman menunggu verifikasi & tanda tangan kliring Bea Cukai di Nusantara Logistic." },
+      { property: "og:title", content: "Pending Verifications — Nusantara Logistic" },
+      { property: "og:description", content: "Daftar pengiriman menunggu verifikasi & tanda tangan kliring Bea Cukai di Nusantara Logistic." },
+    ],
+  }),
   component: VerifyGoods,
 });
 
