@@ -150,14 +150,14 @@ function LandingPage() {
           <div className="max-w-3xl">
             <Badge className="bg-success/15 text-success hover:bg-success/15 border border-success/30 rounded-full px-3 py-1">
               <span className="size-1.5 rounded-full bg-success mr-2 animate-pulse" />
-              Live · 2.418 pengiriman tercatat on-chain
+              Nusantara Logistic · Algorithmic Trust in Logistics
             </Badge>
             <h1 className="mt-6 text-4xl sm:text-6xl font-bold tracking-tight">
-              Kirim barang.<br />
-              <span className="text-gradient-emerald">Bayar QRIS. Lacak on-chain.</span>
+              Nusantara Logistic.<br />
+              <span className="text-gradient-emerald">Algorithmic Trust in Logistics.</span>
             </h1>
             <p className="mt-6 text-lg text-muted-foreground max-w-2xl">
-              Nusantara Logistic menggabungkan kemudahan pembayaran QRIS dengan transparansi blockchain. Bea Cukai menandatangani kliring secara digital — semua tercatat.
+              Kirim barang, bayar via QRIS, dan lacak setiap tahap secara on-chain. Nusantara Logistic memadukan kemudahan Web2 dengan kepercayaan algoritmik Web3 — diverifikasi langsung oleh Bea Cukai.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild size="lg" className="bg-success hover:bg-success/90 text-success-foreground">
