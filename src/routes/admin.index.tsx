@@ -8,6 +8,14 @@ import {
 } from "recharts";
 
 export const Route = createFileRoute("/admin/")({
+  head: () => ({
+    meta: [
+      { title: "Admin Dashboard — Nusantara Logistic" },
+      { name: "description", content: "Ringkasan real-time pengiriman, pendapatan QRIS, dan kliring Bea Cukai Nusantara Logistic." },
+      { property: "og:title", content: "Admin Dashboard — Nusantara Logistic" },
+      { property: "og:description", content: "Ringkasan real-time pengiriman, pendapatan QRIS, dan kliring Bea Cukai Nusantara Logistic." },
+    ],
+  }),
   component: AdminHome,
 });
 
