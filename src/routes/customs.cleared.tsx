@@ -6,6 +6,14 @@ import { SHIPMENTS } from "@/lib/mock-data";
 import { CheckCircle2 } from "lucide-react";
 
 export const Route = createFileRoute("/customs/cleared")({
+  head: () => ({
+    meta: [
+      { title: "Cleared Goods — Nusantara Logistic" },
+      { name: "description", content: "Riwayat pengiriman yang telah dikliring Bea Cukai dan tercatat on-chain di Nusantara Logistic." },
+      { property: "og:title", content: "Cleared Goods — Nusantara Logistic" },
+      { property: "og:description", content: "Riwayat pengiriman yang telah dikliring Bea Cukai dan tercatat on-chain di Nusantara Logistic." },
+    ],
+  }),
   component: ClearedGoods,
 });
 
