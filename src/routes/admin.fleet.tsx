@@ -6,6 +6,14 @@ import { FLEET } from "@/lib/mock-data";
 import { Truck, Activity, CheckCircle2, Clock } from "lucide-react";
 
 export const Route = createFileRoute("/admin/fleet")({
+  head: () => ({
+    meta: [
+      { title: "Fleet Map Tracking — Nusantara Logistic" },
+      { name: "description", content: "Pantau posisi seluruh armada truk Nusantara Logistic secara real-time di Pulau Jawa." },
+      { property: "og:title", content: "Fleet Map Tracking — Nusantara Logistic" },
+      { property: "og:description", content: "Pantau posisi seluruh armada truk Nusantara Logistic secara real-time di Pulau Jawa." },
+    ],
+  }),
   component: FleetMap,
 });
 
