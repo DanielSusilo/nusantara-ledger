@@ -3,6 +3,14 @@ import { DashboardShell } from "@/components/DashboardShell";
 import { ShieldCheck, FileCheck2 } from "lucide-react";
 
 export const Route = createFileRoute("/customs")({
+  head: () => ({
+    meta: [
+      { title: "Bea Cukai Console — Nusantara Logistic" },
+      { name: "description", content: "Verifikasi dan tanda tangan kliring pengiriman secara on-chain di portal Bea Cukai Nusantara Logistic." },
+      { property: "og:title", content: "Bea Cukai Console — Nusantara Logistic" },
+      { property: "og:description", content: "Verifikasi dan tanda tangan kliring pengiriman secara on-chain di portal Bea Cukai Nusantara Logistic." },
+    ],
+  }),
   component: CustomsLayout,
 });
 
