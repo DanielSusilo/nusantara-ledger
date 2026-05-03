@@ -3,6 +3,14 @@ import { DashboardShell } from "@/components/DashboardShell";
 import { Home, Package, Map } from "lucide-react";
 
 export const Route = createFileRoute("/admin")({
+  head: () => ({
+    meta: [
+      { title: "Admin Console — Nusantara Logistic" },
+      { name: "description", content: "Kelola pengiriman, armada, dan operasi logistik Nusantara Logistic Indonesia." },
+      { property: "og:title", content: "Admin Console — Nusantara Logistic" },
+      { property: "og:description", content: "Kelola pengiriman, armada, dan operasi logistik Nusantara Logistic Indonesia." },
+    ],
+  }),
   component: AdminLayout,
 });
 
